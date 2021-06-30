@@ -20,7 +20,6 @@ stages:
         displayName: 'Install Node.js'
 
       - script: |
-          cd '$(System.DefaultWorkingDirectory)/ng-commerce-app'
           npm install -g @angular/cli
           npm install
           ng build --prod
@@ -29,7 +28,7 @@ stages:
       - task: ArchiveFiles@2
         displayName: 'Archive files'
         inputs:
-          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/ng-commerce-app/dist/ng-commerce-app/'
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/ng-commerce-app/'
           includeRootFolder: false
           archiveType: zip
           archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
